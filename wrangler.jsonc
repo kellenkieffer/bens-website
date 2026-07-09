@@ -1,10 +1,14 @@
 {
-  "name": "ben-website",
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "bens-website",
   "compatibility_date": "2026-07-09",
-  "main": "src/index.js",
+  "observability": {
+    "enabled": true
+  },
   "assets": {
-    "directory": "./",
-    "binding": "ASSETS",
-    "run_worker_first": true
-  }
+    "directory": "."
+  },
+  "compatibility_flags": [
+    "nodejs_compat"
+  ]
 }
