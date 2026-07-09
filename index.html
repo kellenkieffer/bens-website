@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ben — Home Base</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bungee&family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #14171C;
+    --panel: #1C2129;
+    --panel-border: #2A303A;
+    --marquee: #FFB347;
+    --signal: #5FD4D0;
+    --text: #EDEEF0;
+    --text-muted: #8B93A1;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: var(--ink);
+    color: var(--text);
+    font-family: 'Space Grotesk', sans-serif;
+    min-height: 100%;
+  }
+
+  body {
+    background-image:
+      repeating-linear-gradient(
+        0deg,
+        rgba(255,255,255,0.015) 0px,
+        rgba(255,255,255,0.015) 1px,
+        transparent 1px,
+        transparent 3px
+      );
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 6vh 5vw 4rem;
+  }
+
+  header {
+    text-align: center;
+    margin-bottom: 3.5rem;
+  }
+
+  .wordmark {
+    font-family: 'Bungee', sans-serif;
+    font-size: clamp(2.2rem, 8vw, 4.5rem);
+    color: var(--marquee);
+    text-shadow:
+      0 0 8px rgba(255,179,71,0.55),
+      0 0 22px rgba(255,179,71,0.25);
+    letter-spacing: 0.02em;
+    margin: 0;
+    animation: flicker 5s infinite;
+  }
+
+  @keyframes flicker {
+    0%, 96%, 100% { opacity: 1; }
+    97% { opacity: 0.85; }
+    98% { opacity: 1; }
+    99% { opacity: 0.9; }
+  }
+
+  .status-line {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.9rem;
+    color: var(--signal);
+    margin-top: 0.9rem;
+    letter-spacing: 0.02em;
+  }
+
+  .status-line::after {
+    content: '_';
+    animation: blink 1.1s steps(1) infinite;
+  }
+
+  @keyframes blink {
+    50% { opacity: 0; }
+  }
+
+  main {
+    width: 100%;
+    max-width: 880px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .cabinet {
+    background: var(--panel);
+    border: 1px solid var(--panel-border);
+    border-radius: 6px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: border-color 0.2s ease, transform 0.2s ease;
+  }
+
+  .cabinet:hover,
+  .cabinet:focus-within {
+    border-color: var(--signal);
+    transform: translateY(-2px);
+  }
+
+  .cabinet-header {
+    background: linear-gradient(180deg, rgba(255,179,71,0.14), transparent);
+    border-bottom: 1px solid var(--panel-border);
+    padding: 0.85rem 1.1rem;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 1.05rem;
+    letter-spacing: 0.01em;
+  }
+
+  .cabinet-screen {
+    flex: 1;
+    padding: 1.4rem 1.1rem 1.6rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+  }
+
+  .cabinet-screen p {
+    margin: 0;
+    color: var(--text-muted);
+    font-size: 0.92rem;
+    line-height: 1.5;
+  }
+
+  .tag {
+    align-self: flex-start;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--signal);
+    border: 1px solid rgba(95,212,208,0.35);
+    padding: 0.2rem 0.55rem;
+    border-radius: 3px;
+  }
+
+  .cabinet a.enter {
+    margin-top: auto;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.85rem;
+    color: var(--marquee);
+    text-decoration: none;
+    border-top: 1px solid var(--panel-border);
+    padding-top: 0.8rem;
+  }
+
+  .cabinet a.enter:hover,
+  .cabinet a.enter:focus-visible {
+    color: var(--signal);
+  }
+
+  a:focus-visible,
+  .cabinet:focus-within {
+    outline: 2px solid var(--signal);
+    outline-offset: 2px;
+  }
+
+  footer {
+    margin-top: 4rem;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    text-align: center;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .wordmark,
+    .status-line::after {
+      animation: none;
+    }
+  }
+</style>
+</head>
+<body>
+
+  <header>
+    <h1 class="wordmark">BEN</h1>
+    <p class="status-line">system online, more coming soon</p>
+  </header>
+
+  <main>
+    <section class="cabinet">
+      <div class="cabinet-header">Games</div>
+      <div class="cabinet-screen">
+        <span class="tag">Coming soon</span>
+        <p>Python games, built with pygame and compiled to run right in the browser. This card will link out to each game once they're packaged.</p>
+        <a class="enter" href="#">&rarr; enter (not live yet)</a>
+      </div>
+    </section>
+
+    <section class="cabinet">
+      <div class="cabinet-header">Chat</div>
+      <div class="cabinet-screen">
+        <span class="tag">Coming soon</span>
+        <p>A live chat room for anyone who has the site password. Real-time messages, no account needed beyond getting in the door.</p>
+        <a class="enter" href="#">&rarr; enter (not live yet)</a>
+      </div>
+    </section>
+
+    <section class="cabinet">
+      <div class="cabinet-header">About</div>
+      <div class="cabinet-screen">
+        <span class="tag">Placeholder</span>
+        <p>Whatever you want this to be — a bit about you, a changelog, or just leave it as the front door to the rest of the site.</p>
+        <a class="enter" href="#">&rarr; edit this section</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    built by Ben &middot; v0.1
+  </footer>
+
+</body>
+</html>
